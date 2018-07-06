@@ -1,6 +1,6 @@
 # Quiz App
 
-This Beatles Trivia app was created for iOS created for project 2 of the Treehouse iOS Techdegree. 
+This Beatles Trivia app was created for iOS project 2 of the Treehouse iOS Techdegree. 
 
 
 ## Project Instructions
