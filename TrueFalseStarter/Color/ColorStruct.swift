@@ -1,5 +1,5 @@
 //
-//  ColorModel.swift
+//  ColorStruct.swift
 //  TrueFalseStarter
 //
 //  Created by Kristopher Wood on 7/6/2018.

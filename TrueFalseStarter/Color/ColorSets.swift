@@ -1,5 +1,5 @@
 //
-//  ColorProvider.swift
+//  ColorSets.swift
 //  TrueFalseStarter
 //
 //  Created by Kristopher Wood on 7/6/2018.
@@ -9,12 +9,12 @@
 import UIKit
 import GameKit
 
-class ColorProvider {
-    // Starting colors
-    let startingColors = Color(mainColor: UIColor(red:0.03, green:0.17, blue:0.24, alpha:1.0),
+class ColorSets {
+
+    let firstColors = Color(mainColor: UIColor(red:0.03, green:0.17, blue:0.24, alpha:1.0),
                                  secondaryColor: UIColor(red:0.05, green:0.47, blue:0.59, alpha:1.0),
                                  textColor: UIColor.white)
-    // Color list
+    // Available Colors
     var colorSets = [
         Color(mainColor: UIColor(red:0.16, green:0.17, blue:0.14, alpha:1.0),
                secondaryColor: UIColor(red:0.34, green:0.35, blue:0.29, alpha:1.0),
@@ -48,7 +48,7 @@ class ColorProvider {
                textColor: UIColor(red:1.00, green:0.55, blue:0.78, alpha:1.0))
     ]
     
-    // Return a random color set
+    // Return a color at random
     func randomColor() -> Color {
         let selectedIndex = GKRandomSource.sharedRandom().nextInt(upperBound: colorSets.count)
         let selectedColor = colorSets[selectedIndex]

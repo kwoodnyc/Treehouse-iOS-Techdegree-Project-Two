@@ -1,5 +1,5 @@
 //
-//  QuestionsProviderModel.swift
+//  QuestionSets.swift
 //  TrueFalseStarter
 //
 //  Created by Kristopher Wood on 7/5/2018.
@@ -7,10 +7,10 @@
 //
 import GameKit
 
-class QuestionsProvider {
-    // Store the total number of questions
-    let totalQuestions = 8
-    // Store a list of all the questions
+class QuestionSets {
+    // total number of questions
+    let totalQuestions = 4
+    // Available Questions
     var questions: [Question] = [
         Question(question: "In what Beatles song did George Harrison first play the sitar?",
                  answers: ["Across the Universe", "Norwegian Wood", "Within You, Without You", "I'm Looking Through You"],
@@ -38,9 +38,9 @@ class QuestionsProvider {
                  answer: 0),
     ]
     
-    /*
-         Function to return the next question
-     */
+    
+    // Function to return the next question
+ 
     func getNextQuestion() -> Question {
         let selected = GKRandomSource.sharedRandom().nextInt(upperBound: questions.count)
         let questionSelected = questions[selected]

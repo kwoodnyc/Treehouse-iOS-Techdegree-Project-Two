@@ -1,5 +1,5 @@
 //
-//  Question.swift
+//  QuestionStruct.swift
 //  TrueFalseStarter
 //
 //  Created by Kristopher Wood 7/5/2018.
@@ -11,12 +11,10 @@ struct Question {
     let question: String
     // List to store the possible answers
     let answers: [String]
-    // ID (0 to total answers less one) of the correct answer
+  
     let answer: Int
     
-    /*
-         Verify that the answer selected is the correct one
-     */
+   // function to verify correct answer
     func isAnswerCorrect(usingID id: Int) -> Bool {
         return id == answer
     }

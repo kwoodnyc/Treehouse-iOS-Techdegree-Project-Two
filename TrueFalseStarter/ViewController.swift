@@ -10,17 +10,24 @@ import UIKit
 import GameKit
 
 class ViewController: UIViewController {
-    // Store the audio manager that handles playing sound
+    
     let audioManager = AudioManager()
-    // Store the game manager that handles answers
+   
     let gameManager = GameManager()
     
     // Access to color information
-    var colorProvider: ColorProvider!
+    var colorSets: ColorSets!
     var color: Color!
     // Access to question information
-    var questionProvider: QuestionsProvider!
+    var questionSets: QuestionSets!
     var currentQuestion: Question!
+    
+    /*
+     
+     Finish Lightning Mode after Submission
+     
+ */
+    
     
     // Total lightning mode seconds
     let totalLightningModeSeconds = 15
@@ -30,7 +37,7 @@ class ViewController: UIViewController {
     weak var timer: Timer!
     var isTimerStarted = false
     
-    // Outlets used for message labels
+    // Outlets used for display labels
     @IBOutlet weak var mainDisplayMessage: UILabel!
     @IBOutlet weak var secondaryDisplayMessage: UILabel!
     @IBOutlet weak var timerLabel: UILabel!
@@ -50,7 +57,7 @@ class ViewController: UIViewController {
         setButtonsHiddenTo(true)
     }
     
-    // MARK: Functions used for button interaction
+   // Button Functions
 
     @IBAction func mainButtonClicked(_ sender: Any) {
         prepareForNewGame()
@@ -89,7 +96,7 @@ class ViewController: UIViewController {
         loadNextRoundWithDelay(seconds: 2)
     }
     
-    // MARK: Main UI Methods
+    
     
     func displayQuestion() {
         if gameManager.isGameOver() {
@@ -97,7 +104,7 @@ class ViewController: UIViewController {
             return
         }
         
-        currentQuestion = questionProvider.getNextQuestion()
+        currentQuestion = questionSets.getNextQuestion()
         selectAndUpdateColor()
         
         switch(currentQuestion.answers.count) {
@@ -163,20 +170,20 @@ class ViewController: UIViewController {
         setMainButtonHiddenTo(false)
     }
     
-    // MARK: UI Helper Methods
+   
     
     func prepareForNewGame() {
         setButtonsHiddenTo(false)
         setMainButtonHiddenTo(true)
         
-        colorProvider = ColorProvider()
-        questionProvider = QuestionsProvider()
-        gameManager.setupWith(questionProvider: questionProvider)
+        colorSets = ColorSets()
+        questionSets = QuestionSets()
+        gameManager.setupWith(questionSets: questionSets)
         displayQuestion()
     }
     
     func selectAndUpdateColor() {
-        color = colorProvider.randomColor()
+        color = colorSets.randomColor()
         
         self.view.backgroundColor = color.mainColor
         
@@ -226,13 +233,13 @@ class ViewController: UIViewController {
     }
     
     func resetUIColor() {
-        self.view.backgroundColor = colorProvider.startingColors.mainColor
+        self.view.backgroundColor = colorSets.firstColors.mainColor
         
-        mainDisplayMessage.textColor = colorProvider.startingColors.textColor
-        secondaryDisplayMessage.textColor = colorProvider.startingColors.textColor
+        mainDisplayMessage.textColor = colorSets.firstColors.textColor
+        secondaryDisplayMessage.textColor = colorSets.firstColors.textColor
     }
     
-    // MARK: Timer helper methods
+    // Timer
     
     func runTimer() {
         if !isTimerStarted {
@@ -263,7 +270,7 @@ class ViewController: UIViewController {
         }
     }
     
-    // MARK: Helper Methods
+   
     
     func loadNextRoundWithDelay(seconds: Int) {
         // Converts a delay in seconds to nanoseconds as signed 64 bit integer

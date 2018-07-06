@@ -7,10 +7,10 @@
 //
 
 class GameManager {
-    // Store reference to the question provider
-    var questionProvider: QuestionsProvider! = nil
+    // Question set reference
+    var questionSets: QuestionSets! = nil
     
-    // Store the number of correct answers vs total answers
+    // number of correct answers vs total answers
     var correctAnswers: Int = 0
     var totalAnswers: Int = 0
     
@@ -25,14 +25,14 @@ class GameManager {
         totalAnswers += 1
     }
     
-    // Check whether the game is over (total questions = total answers)
+    // Game over? (total questions = total answers)
     func isGameOver() -> Bool {
-        return totalAnswers == questionProvider.totalQuestions
+        return totalAnswers == questionSets.totalQuestions
     }
     
     // Reset the manager for a new game
-    func setupWith(questionProvider: QuestionsProvider) {
-        self.questionProvider = questionProvider
+    func setupWith(questionSets: QuestionSets) {
+        self.questionSets = questionSets
         
         correctAnswers = 0
         totalAnswers = 0
